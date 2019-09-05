@@ -1,0 +1,88 @@
+html, body{
+	width: 100%;
+	height: 100%;
+	background-image: url('../imagens/affinity.jpg'); 
+	background-repeat: repeat;
+	background-size: 600px;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+
+.lado-um{
+	width: 50%;
+	height: 100%;
+	float: left;
+	position: relative;
+	background-color: rgba(255,255,255,0.8);
+	overflow: hidden;
+}
+
+.lado-dois{
+	width: 50%;
+	height: 100%;
+	float: left;
+	position: relative;
+	background-color: rgba(255,255,255,0.8);
+	overflow: hidden;
+}
+
+.lado-um
+.container-formulario-login{
+	width: 400px;
+	height: 290px;
+	background-color: pink;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;	
+	padding: 12px;
+	background-color: rgba(165,43,43,0.9);	
+	box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.6);
+	animation-name: aparecer;
+	animation-duration: 1.5s;
+}
+
+.lado-dois
+.container-formulario-cadastro{
+	width: 400px;
+	height: 420px;
+	background-color: brown;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	box-sizing: border-box;
+	padding: 12px;
+	background-color: rgba(165,43,43,0.9);
+	box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.6);
+	animation-name: aparecer;
+	animation-duration: 1.5s;
+}
+
+form{
+	width: 100%;
+}
+
+label{
+	color: white;
+}
+
+h3{
+	color: white;
+}
+
+@keyframes aparecer{
+	from{
+          transform: translateY(-100%);
+          opacity: 0;
+		} to {
+          transform: translateX(0%);
+          opacity: 1;
+		}
+}

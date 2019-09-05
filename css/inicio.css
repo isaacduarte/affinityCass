@@ -1,0 +1,151 @@
+html, body{
+	width: 100%;
+	height: 100%;
+	background-image: url('../imagens/padrao5.png');
+	background-size: 500px;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+
+.menu-lateral{
+	width: 300px;
+	height: 100%;
+	position: fixed;
+	background-image: url('../imagens/affinity.jpg');
+	background-position: 20% top; 
+	float: left;
+}
+
+.menu-lateral .mascara{
+   width: 100%;
+   height: 100%;
+   float: left;
+   background-color: rgba(0,0,0,0.7);
+   box-shadow: 1px 1px 4px 2px rgba(0,0,0,0.5);
+}
+
+.menu-lateral ul li a{
+	display: block;
+	padding: 6px 8px;
+	font-size: 16pt;
+	text-decoration: none;
+	color: white;
+	animation-duration: .6s;
+	animation-fill-mode: forwards;
+}
+
+.menu-lateral ul li a:hover{
+	animation-name: animarTexto;
+}
+
+.menu-lateral h1{
+	padding-left: 8px;
+	color: white;
+}
+
+.conteudo{
+	width: calc(100% - 300px);
+	float: left;
+	padding: 18px;
+	margin-left: 300px;
+	padding-bottom: 50px;
+}
+
+.cabecalho-site{
+	width: 100%;
+	min-height: 70px;
+	background-color: rgba(51,122,183,0.8);
+	margin-bottom: 18px;
+	border-radius: 5px;
+	padding: 1px 20px; 
+	box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.5);
+	color: white;
+}
+
+
+.panel-heading input[type="search"]{
+	border: none;
+	height: 30px;
+	color: #337ab7;
+}
+
+.panel-heading button{
+	border: none;
+	height: 30px;
+	padding: 0 3px;
+	background-color: white;
+	color: #337ab7;
+}
+
+.panel-heading label{
+	margin-left: 12px;
+}
+
+@keyframes animarTexto{
+	to{
+		background-color: white;
+	    color: black;
+	}
+}
+
+@keyframes surgirDaEsquerda{
+	from{
+		transform: translateX(-200%);
+	}to{
+		transform: translateX(0);
+	}
+}
+
+@keyframes surgirDeBaixo{
+	from{
+		transform: translateY(100%);
+	}to{
+		transform: translateY(0);
+	}
+}
+
+td:nth-last-child(1){
+	width: 190px;
+}
+
+.col-md-3 .item-menu{
+	display: block;
+	width: 100%;
+	height: 200px;
+	background-color: #337ab7;
+	padding: 10px;
+	box-sizing: border-box;
+	position: relative;
+	margin-bottom: 13px;
+	box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.3);
+	overflow: hidden;
+}
+
+.col-md-3 .item-menu:hover span{
+	animation-name: surgirDaEsquerda;
+	animation-duration: .7s;
+}
+
+.col-md-3 .item-menu:hover h4{
+	animation-name: surgirDeBaixo;
+	animation-duration: .7s;
+}
+
+.col-md-3 .item-menu h4{
+	font-size: 19pt;
+	margin-top: 90px;
+	color: white;
+	position: absolute;
+	bottom: 0;
+}
+
+.col-md-3 .item-menu span{
+	color: yellow;
+}
+
+.form-control{
+	box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.2);
+}
+
