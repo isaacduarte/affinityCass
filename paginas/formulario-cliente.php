@@ -1,49 +1,52 @@
 <?php 
- include_once '../classes/Animal.class.php';
+ include_once '../classes/Cliente.class.php';
 
-   if(isset($_GET['id-animal'])){
-      $animal = Animal::getAnimalPorId($_GET['id-animal']);
-      $id = $animal['id_animal'];
-      $especie = $animal['especie'];
-      $raca = $animal['raca'];
-      $cor = $animal['cor'];
-      $peso = $animal['peso'];
-      $nome_dono = $animal['nome_dono'];
-
+   if(isset($_GET['id_cliente'])){
+      $cliente = Cliente::getClientePorId($_GET['id_cliente']);
+      $id = $cliente['id_cliente'];
+      $nome = $cliente['nome'];
+      $CNPJ = $cliente['CNPJ'];
+      $adquirente = $cliente['adquirente'];
+      $telefone = $cliente['telefone'];
+	  $email = $cliente['email'];
    }
+   $id_usuario= $usuario['id_usuario'];
+
  ?>
- <h1><?php echo isset($id) ? 'Alterar animal: ID '.$id : 'Cadastrar animal' ?></h1>
-<form method="post" action="../controles/controleFormularioAnimal.php" autocomplete="off">
-<input type="hidden" name="id_animal" value="<?php echo isset($id) ? $id : '' ?>">
+ <h1><?php echo isset($id) ? 'Alterar Cliente: ID '.$id : 'Cadastrar Cliente' ?></h1>
+<form method="post" action="../controles/controleFormularioCliente.php" autocomplete="off">
+<input type="hidden" name="id_cliente" value="<?php echo isset($id) ? $id : '' ?>">
+<input type="hidden" name="id_usuario" value="<?php echo ($id_usuario) ?>">
+
 	<div class="row">
 		<div class="col-md-6 form-group">
-			<label>Informe a espécie do animal</label>
-			<input type="text" class="form-control" name="especie" 
-			placeholder="Digite a espécie" required value="<?php echo isset($especie) ? $especie : '' ?>">
+			<label>Informe o Nome</label>
+			<input type="text" class="form-control" name="nome" 
+			placeholder="Digite o Nome" required value="<?php echo isset($nome) ? $nome : '' ?>">
 		</div>
 		<div class="col-md-6 form-group">
-			<label>Informe a raça do animal</label>
-			<input type="text" class="form-control" name="raca" 
-			placeholder="Digite a raça" required value="<?php echo isset($raca) ? $raca : '' ?>">
+			<label>Informe o CNPJ</label>
+			<input id="CNPJ" type="text" class="form-control" name="CNPJ" 
+			placeholder="Digite o CNPJ" required value="<?php echo isset($CNPJ) ? $CNPJ : '' ?>">
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-7 form-group">
-			<label>Informe a cor do animal</label>
-			<input type="text" class="form-control" name="cor" 
-			placeholder="Digite a cor" required value="<?php echo isset($cor) ? $cor : '' ?>">
+		<div class="col-md-6 form-group">
+			<label>Informe todas Adquirentes </label>
+			<input type="text" class="form-control" name="adquirente" 
+			placeholder="Digite as adquirentess" required value="<?php echo isset($adquirente) ? $adquirente : '' ?>">
 		</div>
-		<div class="col-md-5 form-group">
-			<label>Informe o peso do animal</label>
-			<input type="text" class="form-control" name="peso" 
-			placeholder="Digite o peso" required value="<?php echo isset($peso) ? $peso : '' ?>">
+		<div class="col-md-6 form-group">
+			<label>Informe o telefone</label>
+			<input id="telefone" type="text" class="form-control" name="telefone" 
+			placeholder="Digite o telefone" required value="<?php echo isset($telefone) ? $telefone : '' ?>">
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12 form-group">
-				<label>Informe o nome do proprietário do animal</label>
-			<input type="text" class="form-control" name="nome-dono" 
-			placeholder="Digite o nome do dono" required value="<?php echo isset($nome_dono) ? $nome_dono : '' ?>">
+			<label>Informe o E-mail</label>
+			<input type="text" class="form-control" name="email" 
+			placeholder="Digite o E-mail" required value="<?php echo isset($email) ? $email : '' ?>">
 		</div>
 	</div>
 	<div class="row">
@@ -52,7 +55,7 @@
 		</div>
 		<div class="col-md-6 form-group">
 			<button type="reset" name="form-cancelar" class="btn btn-primary center-block"
-			onclick="window.location='?page=buscar-animais'"><span class="fa fa-times"></span> Cancelar</button>
+			onclick="window.location='?page=buscar-cliente'"><span class="fa fa-times"></span> Cancelar</button>
 		</div>
 	</div>
 </form>

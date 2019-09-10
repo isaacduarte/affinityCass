@@ -1,19 +1,20 @@
 <?php
- 
 include_once '../conexao/conexao.php';
-
+if(!isset($_SESSION)){
+  session_start();
+}
 class Cliente{
 
  private $nome;
- private $cnpj;
+ private $CNPJ;
  private $adquirente;
  private $telefone;
  private $email;
  private $id_usuario; 
 
- function __construct($nome, $cnpj, $adquirente, $telefone, $email, $id_usuario){
+ function __construct($nome, $CNPJ, $adquirente, $telefone, $email, $id_usuario){
    $this->nome = $nome;
-   $this->cnpj = $cnpj;
+   $this->CNPJ = $CNPJ;
    $this->adquirente = $adquirente;
    $this->telefone = $telefone;
    $this->email = $email;
@@ -21,9 +22,9 @@ class Cliente{
  }
 
  public function cadastrar(){
-   $sql = "insert into cliente(nome, cnpj, adquirente, telefone, email, id_usuario) values (':nome', ':cnpj', ':adquirente', ':telefone', ':nome_donoemail', ':id_usuario')";
-   $array1 = array(':nome', ':cnpj', ':adquirente', ':telefone', ':email', ':id_usuario');
-   $array2 = array($this->nome, $this->cnpj, $this->adquirente, $this->telefone, $this->email, $this->id_usuario);
+   $sql = "insert into cliente(nome, CNPJ, adquirente, telefone, email, id_usuario) values (':nome', ':CNPJ', ':adquirente', ':telefone', ':email', ':id_usuario')";
+   $array1 = array(':nome', ':CNPJ', ':adquirente', ':telefone', ':email', ':id_usuario');
+   $array2 = array($this->nome, $this->CNPJ, $this->adquirente, $this->telefone, $this->email, $this->id_usuario);
    $sql = str_replace($array1, $array2, $sql);
    $resultado = new Conexao();
    $resultado->query($sql);
@@ -31,9 +32,9 @@ class Cliente{
 }
 
 public function alterar($id){
-  $sql = "update cliente set nome=':nome', cnpj=':cnpj', adquirente=':adquirente', telefone=':telefone', email=':email', id_usuario=':id_usuario' where id_cliente=:id_cliente";
-   $array1 = array(':nome', ':cnpj', ':adquirente', ':telefone', ':nome_donoemail', ':id_usuario', ':id_cliente');
-   $array2 = array($this->nome, $this->cnpj, $this->adquirente, $this->telefone, $this->email, $this->id_usuario, $id);
+  $sql = "update cliente set nome=':nome', CNPJ=':CNPJ', adquirente=':adquirente', telefone=':telefone', email=':email', id_usuario=':id_usuario' where id_cliente=:id_cliente";
+   $array1 = array(':nome', ':CNPJ', ':adquirente', ':telefone', ':email', ':id_usuario', ':id_cliente');
+   $array2 = array($this->nome, $this->CNPJ, $this->adquirente, $this->telefone, $this->email, $this->id_usuario, $id);
    $sql = str_replace($array1, $array2, $sql);
    $resultado = new Conexao();
    $resultado->query($sql);
@@ -41,9 +42,9 @@ public function alterar($id){
 }
 
 public static function buscar($id, $tipo_busca, $termo){
-    $sql = "select * from cliente where id_usuario=id_usuario and :tipo_busca like '%:termo_busca%'";
-    $array1 = array(':tipo_busca', ':termo_busca');
-    $array2 = array($tipo_busca, $termo);
+    $sql = "select * from cliente where id_usuario=':id' and :tipo_busca like '%:termo_busca%'";
+    $array1 = array(':id', ':tipo_busca', ':termo_busca');
+    $array2 = array($id, $tipo_busca, $termo);
     $sql = str_replace($array1, $array2, $sql);
     
     $resultados = new Conexao();
@@ -60,11 +61,12 @@ public static function buscar($id, $tipo_busca, $termo){
     return $resultados->fetch_array();
  }
 */
- public static function getQtdClientesCadastrados(){
-   $sql = 'select * from cliente where id_usuario=id_usuario';
-   $conexao = new Conexao();
-   $resultados = $conexao->query($sql);
+public static function getClientePorId($id_cliente){
+  $sql = "select * from cliente where id_cliente=':id_cliente'";
+  $sql = str_replace(':id_cliente', $id_cliente, $sql);
+  $resultados = new Conexao();
+  $resultados = $resultados->query($sql);
+  return $resultados->fetch_array();
+}
 
-   return mysqli_num_rows($resultados);
- }
 }

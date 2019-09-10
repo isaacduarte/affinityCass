@@ -22,60 +22,62 @@
      };
    });
  </script>
-<h1>Tabela de animais</h1>
+<h1>Tabela de Clientes</h1>
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<form method="get" action="inicio.php">
+		<div class="row">
+		 <div class="col-md-3">
 		    <input type="hidden" name="page" value="buscar-cliente">	
-			<input type="search" name="campo-busca">
-		    <button>Buscar</button>
-		    <label><input type="radio" checked name="tipo-busca" value="especie"> Buscar por espécie</label>
-		    <label><input type="radio" name="tipo-busca" value="raca"> Buscar por raça</label>
+			<input type="search" class="form-control" name="campo-busca">
+		 </div>	
+		    <button class="btn btn-primary "><span class="fa fa-check"></span>Buscar</button>
+		    <label><input type="radio" checked name="tipo-busca" value="nome"> Buscar por Nome</label>
+		    <label><input type="radio" name="tipo-busca" value="CNPJ"> Buscar por CNPJ</label>
+		</div>
 		    </form>
 	</div>
     <?php 
      $termo = isset($_GET['campo-busca']) ? filter_input(INPUT_GET, 'campo-busca', FILTER_SANITIZE_SPECIAL_CHARS) : '';
-     $tipo = isset($_GET['tipo-busca']) ? filter_input(INPUT_GET, 'tipo-busca', FILTER_SANITIZE_SPECIAL_CHARS) : 'raca';
-
-     $resultados = Animal::buscar($tipo, $termo);
+	 $tipo = isset($_GET['tipo-busca']) ? filter_input(INPUT_GET, 'tipo-busca', FILTER_SANITIZE_SPECIAL_CHARS) : 'nome';
+	 $id=$usuario['id_usuario'] ;
+	 
+	 $resultados = Cliente::buscar($id, $tipo, $termo);
      ?>
-	<table class="table table-striped">
+	<table class="table table-striped table-bordered table-hover ">
 		<tr>
-			<th>ID:</th>
-			<th>Espécie:</th>
-			<th>Raça:</th>
-      <th>Cor:</th>
-			<th>Peso:</th>
-			<th>Proprietário:</th>
+			<th>Nome:</th>
+			<th>CNPJ:</th>
+			<th>Adquirente:</th>
+            <th>Telefone:</th>
+			<th>E-mail:</th>
 			<th>Ação:</th>
 		</tr>
 
 		<?php 
 		if(count($resultados)!=0):
-		foreach ($resultados as $animal): ?>
+		foreach ($resultados as $cliente): ?>
 		<tr>
-			<td><?php echo $animal['id_animal'] ?></td>
-			<td><?php echo $animal['especie'] ?></td>
-			<td><?php echo $animal['raca'] ?></td>
-      <td><?php echo $animal['cor'] ?></td>
-			<td><?php echo $animal['peso'] ?></td>
-			<td><?php echo $animal['nome_dono'] ?></td>
+			<td><?php echo $cliente['nome'] ?></td>
+			<td><?php echo $cliente['CNPJ'] ?></td>
+			<td><?php echo $cliente['adquirente'] ?></td>
+            <td><?php echo $cliente['telefone'] ?></td>
+			<td><?php echo $cliente['email'] ?></td>
 			<td>
-              <a href="?page=formulario-animal&id-animal=<?php echo $animal['id_animal'] ?>">
+              <a href="?page=formulario-cliente&id_cliente=<?php echo $cliente['id_cliente'] ?>">
               <button class="btn btn-success"><span class="fa fa-wrench"></span> Editar</button>
-              </a>
-
-              <a href="../controles/controleExcluirAnimal.php?id-animal-excluir=<?php echo $animal['id_animal'] ?>" class="botao-excluir-animal">
-              <button class="btn btn-danger"><span class="fa fa-trash-o"></span> Excluir</button>
               </a>
 			</td>
 		</tr>
+		
+     <tr>
+	 
 	<?php 
   endforeach; 
   echo 'Resultados encontrados: '.count($resultados);
 	else:
     ?>
-     <tr>
+	
      <td  colspan="7">
        Nenhum resultado encontrado	
      </td>
