@@ -103,6 +103,16 @@
                             <label>Confirme sua senha</label>
                             <input class="form-control" type="password" name="confsenha" placeholder="Confirme a senha">
                         </div> 
+					</div>
+					<div class="row">
+    					<div class="col-md-6 form-group">
+    						<label>Número de Inscrição</label>
+    				        <input class="form-control" type="text" name="inscricao" placeholder="Número de Inscrição do Contador">
+    					</div>						
+						<div class="col-md-6 form-group">
+						  <label><input type="radio" checked name="filiado" value="1"> Filiado ao Sescap</label>
+		   				  <label><input type="radio" name="filiado" value="0"> Não Filiado</label>
+						</div> 
     				</div>
     				<div class="row">
     					<div class="col-md-12">
