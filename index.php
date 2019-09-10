@@ -70,14 +70,20 @@
     				        <input class="form-control" type="text" name="nome" placeholder="Informe o nome">
     					</div>
     				</div>
+					<div class="row">
+    					<div class="col-md-12 form-group">
+						<label>Email</label>
+    				        <input class="form-control" type="text" name="email" placeholder="Informe o Email">
+    					</div>
+    				</div>
     				<div class="row">
     					<div class="col-md-6 form-group">
     						<label>CPF</label>
     				        <input id="cpf" class="form-control" type="text" name="cpf" placeholder="Informe o CPF">
     					</div>
     					<div class="col-md-6 form-group">
-    						<label>Email</label>
-    				        <input class="form-control" type="text" name="email" placeholder="Informe o Email">
+    						<label>CNPJ</label>
+    				        <input id="CNPJ" class="form-control" type="text" name="cnpj" placeholder="Informe o CNPJ">
     					</div>
                         <div class="col-md-6 form-group">
                             <label>Telefone</label>
@@ -96,7 +102,7 @@
                           <div class="col-md-6 form-group">
                             <label>Confirme sua senha</label>
                             <input class="form-control" type="password" name="confsenha" placeholder="Confirme a senha">
-                        </div>
+                        </div> 
     				</div>
     				<div class="row">
     					<div class="col-md-12">

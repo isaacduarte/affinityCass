@@ -14,8 +14,9 @@
       private $login;
       private $senha; 
       private $nivel;
+      private $cnpj;
 
- 	function __construct($nome, $cpf, $email, $telefone, $login, $senha, $nivel){
+ 	function __construct($nome, $cpf, $email, $telefone, $login, $senha, $nivel, $cnpj){
        $this->nome = $nome;
        $this->cpf = $cpf;
        $this->email = $email;
@@ -23,12 +24,13 @@
        $this->login = $login;
        $this->senha = $senha;
        $this->nivel = $nivel;
+       $this->cnpj = $cnpj;
  	}
 
  	public function cadastrar(){
-      $sql = "insert into usuario(nome,cpf,email,telefone,login,senha,nivel)values(':nome',':cpf',':email',':telefone',':login',':senha',':nivel')";
-      $array = array(':nome',':cpf',':email',':telefone',':login',':senha',':nivel');
-      $array2 = array($this->nome, $this->cpf, $this->email, $this->telefone, $this->login, $this->senha, $this->nivel);
+      $sql = "insert into usuario(nome,cpf,email,telefone,login,senha,nivel,cnpj)values(':nome',':cpf',':email',':telefone',':login',':senha',':nivel', ':cnpj')";
+      $array = array(':nome',':cpf',':email',':telefone',':login',':senha',':nivel', ':cnpj');
+      $array2 = array($this->nome, $this->cpf, $this->email, $this->telefone, $this->login, $this->senha, $this->nivel, $this->cnpj);
       $sql = str_replace($array, $array2, $sql);
 
       $conexao = new Conexao();

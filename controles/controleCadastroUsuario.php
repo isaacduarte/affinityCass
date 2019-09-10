@@ -10,6 +10,7 @@
  $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
  $confsenha = filter_input(INPUT_POST, 'confsenha', FILTER_SANITIZE_SPECIAL_CHARS);
  $nivel=1;
+ $cnpj = filter_input(INPUT_POST, 'cnpj', FILTER_SANITIZE_SPECIAL_CHARS);
 
  if(empty($nome)){
  	echo "<script>alert('O campo nome e obrigatório')</script>";
@@ -24,7 +25,7 @@
  }else if($senha != $confsenha){
     echo "<script>alert('As senhas não coincidem')</script>";
  }else{
- 	$usuario = new Usuario($nome, $cpf, $email, $telefone, $login, md5($senha), $nivel);
+ 	$usuario = new Usuario($nome, $cpf, $email, $telefone, $login, md5($senha), $nivel, $cnpj);
  	$usuario->cadastrar();
  	Usuario::logar($login, md5($senha));
     echo "<script>window.location='../paginas/inicio.php'</script>";
