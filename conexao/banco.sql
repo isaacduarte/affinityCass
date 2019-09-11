@@ -30,10 +30,10 @@ CREATE TABLE `loja` (
 
 CREATE TABLE `adquirente` (
   `id_adquirente` int(10) PRIMARY KEY AUTO_INCREMENT,
-  `descricao` varchar(50) DEFAULT 'NULL',
-  `id_loja` int(10)
+  `descricao` varchar(50) DEFAULT 'NULL'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 CREATE TABLE `loja_adquirente` (
+  `id_loja_adquirente` int(10) PRIMARY KEY AUTO_INCREMENT,
   `id_loja` int(10),
   `id_adquirente` int(10)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -43,9 +43,6 @@ ALTER TABLE `cliente`
 
 ALTER TABLE `loja`
   ADD CONSTRAINT `loja_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`);
-
-ALTER TABLE `adquirente`
-  ADD CONSTRAINT `adquirente_ibfk_1` FOREIGN KEY (`id_loja`) REFERENCES `loja` (`id_loja`);
 
 ALTER TABLE `loja_adquirente`
   ADD CONSTRAINT `loja_adquirente_ibfk_1` FOREIGN KEY (`id_loja`) REFERENCES `loja` (`id_loja`);

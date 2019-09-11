@@ -1,5 +1,4 @@
-<?php 
- include_once '../classes/Cliente.class.php';
+include_once '../classes/Cliente.class.php';
  include_once '../classes/Adquirente.class.php';
 
 
@@ -16,7 +15,7 @@
 
  ?>
  <h1><?php echo isset($id) ? 'Alterar Cliente: ID '.$id : 'Cadastrar Cliente' ?></h1>
-<form id="framework_form" method="post" action="../controles/controleFormularioCliente.php" autocomplete="off">
+<form method="post" action="../controles/controleFormularioCliente.php" autocomplete="off">
 <input type="hidden" name="id_cliente" value="<?php echo isset($id) ? $id : '' ?>">
 <input type="hidden" name="id_usuario" value="<?php echo ($id_usuario) ?>">
 

@@ -3,34 +3,32 @@ include_once '../conexao/conexao.php';
 if(!isset($_SESSION)){
   session_start();
 }
-class Loja{
+class Loja_Adquirente{
 
- private $cnpj;
- private $id_cliente; 
+ private $id_loja;
+ private $id_adquirente; 
 
- function __construct($cnpj, $id_cliente){
-   $this->cnpj = $cnpj;
-   $this->id_cliente = $id_cliente;
+ function __construct($id_loja, $id_adquirente){
+   $this->id_loja = $id_loja;
+   $this->id_adquirente = $id_adquirente;
  }
 
  public function cadastrar(){
-   $sql = "insert into cliente(cnpj, id_cliente) values (':cnpj', ':id_cliente')";
-   $array1 = array(':cnpj', ':id_cliente');
-   $array2 = array($this->cnpj, $this->id_cliente);
+   $sql = "insert into loja_adquirente (id_loja, id_adquirente) values (':id_loja', ':id_adquirente')";
+   $array1 = array(':id_loja', ':id_adquirente');
+   $array2 = array($this->id_loja, $this->id_adquirente);
    $sql = str_replace($array1, $array2, $sql);
    $resultado = new Conexao();
    $resultado->query($sql);
-   echo "<script>alert('Cadastrado com sucesso!!')</script>";
 }
 
 public function alterar($id){
-  $sql = "update cliente cnpj=':cnpj', id_cliente=':id_cliente' where id_loja=:id_loja";
-   $array1 = array(':cnpj', ':id_cliente', ':id_loja');
-   $array2 = array($this->cnpj, $this->id_cliente, $id);
+  $sql = "update loja_adquirente id_loja=':id_loja', id_adquirente=':id_adquiente' where id_loja_adquirente=:id_loja_adquirente";
+   $array1 = array(':id_loja', ':id_adquirente', ':id_loja_adquirente');
+   $array2 = array($this->id_loja, $this->id_adquirente, $id);
    $sql = str_replace($array1, $array2, $sql);
    $resultado = new Conexao();
    $resultado->query($sql);
-   echo "<script>alert('Alterado com sucesso!!')</script>";
 }
 
  /*public static function getQtdClientesCadastrados($id){
@@ -43,16 +41,16 @@ public function alterar($id){
  }
 */
 
-public static function getLojaPorId($id_loja){
-  $sql = "select * from loja where id_loja=':id_loja'";
-  $sql = str_replace(':id_loja', $id_loja, $sql);
+public static function getLojaAdquirentePorId($id){
+  $sql = "select * from loja where id_adquirente=':id'";
+  $sql = str_replace(':id_adquirente', $id, $sql);
   $resultados = new Conexao();
   $resultados = $resultados->query($sql);
   return $resultados->fetch_array();
 }
 
-public static function getLojaPorCliente($id){
-    $sql = "select * from loja where id_usuario=':id'";
+public static function getLojaPorLoja($id){
+    $sql = "select * from adquirente where id_adquirente=':id'";
     $array1 = array(':id');
     $array2 = array($id);
     $sql = str_replace($array1, $array2, $sql);
