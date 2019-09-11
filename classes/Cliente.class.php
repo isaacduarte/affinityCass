@@ -6,25 +6,25 @@ if(!isset($_SESSION)){
 class Cliente{
 
  private $nome;
- private $CNPJ;
- private $adquirente;
  private $telefone;
  private $email;
+ private $status;
+ private $plano;
  private $id_usuario; 
 
- function __construct($nome, $CNPJ, $adquirente, $telefone, $email, $id_usuario){
+ function __construct($nome, $telefone, $email, $status, $plano, $id_usuario){
    $this->nome = $nome;
-   $this->CNPJ = $CNPJ;
-   $this->adquirente = $adquirente;
    $this->telefone = $telefone;
    $this->email = $email;
+   $this->status = $status;
+   $this->plano = $plano;
    $this->id_usuario = $id_usuario;
  }
 
  public function cadastrar(){
-   $sql = "insert into cliente(nome, CNPJ, adquirente, telefone, email, id_usuario) values (':nome', ':CNPJ', ':adquirente', ':telefone', ':email', ':id_usuario')";
-   $array1 = array(':nome', ':CNPJ', ':adquirente', ':telefone', ':email', ':id_usuario');
-   $array2 = array($this->nome, $this->CNPJ, $this->adquirente, $this->telefone, $this->email, $this->id_usuario);
+   $sql = "insert into cliente(nome, telefone, email, status, plano, id_usuario) values (':nome', ':telefone', ':email', ':status', ':plano', ':id_usuario')";
+   $array1 = array(':nome', ':telefone', ':email', ':status', ':plano', ':id_usuario');
+   $array2 = array($this->nome, $this->telefone, $this->email, $this->status, $this->plano, $this->id_usuario);
    $sql = str_replace($array1, $array2, $sql);
    $resultado = new Conexao();
    $resultado->query($sql);
@@ -32,9 +32,9 @@ class Cliente{
 }
 
 public function alterar($id){
-  $sql = "update cliente set nome=':nome', CNPJ=':CNPJ', adquirente=':adquirente', telefone=':telefone', email=':email', id_usuario=':id_usuario' where id_cliente=:id_cliente";
-   $array1 = array(':nome', ':CNPJ', ':adquirente', ':telefone', ':email', ':id_usuario', ':id_cliente');
-   $array2 = array($this->nome, $this->CNPJ, $this->adquirente, $this->telefone, $this->email, $this->id_usuario, $id);
+  $sql = "update cliente set nome=':nome', telefone=':telefone', email=':email', status=':status', plano=':plano', id_usuario=':id_usuario' where id_cliente=:id_cliente";
+   $array1 = array(':nome', ':telefone', ':email', ':status', ':plano', ':id_usuario', ':id_cliente');
+   $array2 = array($this->nome, $this->telefone, $this->email, $this->status, $this->plano, $this->id_usuario, $id);
    $sql = str_replace($array1, $array2, $sql);
    $resultado = new Conexao();
    $resultado->query($sql);
