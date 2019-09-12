@@ -28,7 +28,6 @@ class Cliente{
    $sql = str_replace($array1, $array2, $sql);
    $resultado = new Conexao();
    $resultado->query($sql);
-   echo "<script>alert('Cliente cadastrado com sucesso!!')</script>";
 }
 
 public function alterar($id){

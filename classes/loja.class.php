@@ -23,10 +23,10 @@ class Loja{
    echo "<script>alert('Cadastrado com sucesso!!')</script>";
 }
 
-public function alterar($id){
+public function alterar($id_loja){
   $sql = "update cliente cnpj=':cnpj', id_cliente=':id_cliente' where id_loja=:id_loja";
    $array1 = array(':cnpj', ':id_cliente', ':id_loja');
-   $array2 = array($this->cnpj, $this->id_cliente, $id);
+   $array2 = array($this->cnpj, $this->id_cliente, $id_loja);
    $sql = str_replace($array1, $array2, $sql);
    $resultado = new Conexao();
    $resultado->query($sql);

@@ -1,44 +1,25 @@
+<?php
 include_once '../classes/Cliente.class.php';
  include_once '../classes/Adquirente.class.php';
-
-
+ include_once '../classes/Loja.class.php';
+ include_once '../classes/loja_adquirente.class.php';
+	$id_loja='';
    if(isset($_GET['id_cliente'])){
-      $cliente = Cliente::getClientePorId($_GET['id_cliente']);
-      $id = $cliente['id_cliente'];
-      $nome = $cliente['nome'];
-      $CNPJ = $cliente['CNPJ'];
-      $adquirente = $cliente['adquirente'];
-      $telefone = $cliente['telefone'];
-	  $email = $cliente['email'];
+    	$cliente = Cliente::getClientePorId($_GET['id_cliente']);
+		$id_cliente = $cliente['id_cliente'];
+   }else if(isset($_GET['id_loja'])){
+		$loja = Loja::getLojaPorId($_GET['id_loja']);
+		$id_loja = $loja['id_loja'];
+		$cnpj =  $loja['cnpj'];
+		$id_cliente = $loja['id_cliente'];
    }
-   $id_usuario= $usuario['id_usuario'];
-
  ?>
- <h1><?php echo isset($id) ? 'Alterar Cliente: ID '.$id : 'Cadastrar Cliente' ?></h1>
-<form method="post" action="../controles/controleFormularioCliente.php" autocomplete="off">
-<input type="hidden" name="id_cliente" value="<?php echo isset($id) ? $id : '' ?>">
-<input type="hidden" name="id_usuario" value="<?php echo ($id_usuario) ?>">
-
-	<div class="row">
-		<div class="col-md-6 form-group">
-			<label>Informe o Nome</label>
-			<input type="text" class="form-control" name="nome" 
-			placeholder="Digite o Nome" required value="<?php echo isset($nome) ? $nome : '' ?>">
-		</div>
-		<div class="col-md-6 form-group">
-			<label>Informe o telefone</label>
-			<input id="telefone" type="text" class="form-control" name="telefone" 
-			placeholder="Digite o telefone" required value="<?php echo isset($telefone) ? $telefone : '' ?>">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12 form-group">
-			<label>Informe o E-mail</label>
-			<input type="text" class="form-control" name="email" 
-			placeholder="Digite o E-mail" required value="<?php echo isset($email) ? $email : '' ?>">
-		</div>
-	</div>
+ <h1><?php echo isset($id_cliente) ? 'Cadastrar Filial:': 'Alterar Loja' ?></h1>
+<form method="post" action="../controles/controleFormularioLoja.php" autocomplete="off">
+<input type="hidden" name="id_loja" value="<?php echo isset($id_loja) ? $id_loja : '' ?>">
+<input type="hidden" name="id_cliente" value="<?php echo ($id_cliente) ?>">
 	<?php
+	$loja_adquirente = Loja_Adquirente::getLojaAdquirentePorId($id_loja);
 	$resultados = Adquirente::getAdquirentesCadastrados();
 	 
 	?>
@@ -46,29 +27,42 @@ include_once '../classes/Cliente.class.php';
 
 	<div class="row">
 		<div class="col-md-6 form-group">
-		<label>Selecione uma adquirente</label>
+		<label><?php echo isset($id_cliente) ? 'Selecione uma adquirente:': 'Adquirente:' ?></label>
+		<label>
+		<?php
+		$row[]='';
+		$i=0;
+			foreach ($loja_adquirente as $id){
+			$ad=Adquirente::getAdquirentePorId($id['id_adquirente']);
+			echo($ad['descricao'].', ');
+				$row[$i] = $loja_adquirente['id_loja_adquirente'];
+			}
+			?>
+		</label>
 		<select id="framework" name="framework[]" multiple class="form-control">
 		<?php
-		if(count($resultados)!=0):
-	foreach ($resultados as $adquirente):?>
+			foreach ($resultados as $adquirente):?>
   		 <option value="<?php echo $adquirente['id_adquirente']?>"><?php echo $adquirente['descricao']?></option>
 		   <?php 
-  		endforeach; 
-			endif;
+  			endforeach; 
    		 ?>
 		</select>
 		</div>
 		<div class="col-md-6 form-group">
 			<label>Informe o CNPJ</label>
-			<input id="CNPJ" type="text" class="form-control" name="CNPJ" 
-			placeholder="Digite o CNPJ" required value="<?php echo isset($CNPJ) ? $CNPJ : '' ?>">
+			<input id="cnpj" type="text" class="form-control" name="cnpj" 
+			placeholder="Digite o CNPJ" required value="<?php echo isset($cnpj) ? $cnpj : '' ?>">
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6 form-group">
+		<div class="col-md-4 form-group">
 			<button name="form-submit" class="btn btn-primary center-block"><span class="fa fa-check"></span> Salvar</button>
 		</div>
-		<div class="col-md-6 form-group">
+		<div class="col-md-4 form-group">
+			<button type="reset" name="form-concluir" class="btn btn-primary center-block"
+			onclick="window.location='?page=formulario-cliente'"><span class="fa fa-check"></span> Concluir</button>
+		</div>
+		<div class="col-md-4 form-group">
 			<button type="reset" name="form-cancelar" class="btn btn-primary center-block"
 			onclick="window.location='?page=buscar-cliente'"><span class="fa fa-times"></span> Cancelar</button>
 		</div>

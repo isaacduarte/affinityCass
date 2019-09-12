@@ -11,7 +11,6 @@ include_once '../classes/loja_adquirente.class.php';
 	 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
 	 $id_usuario = filter_input(INPUT_POST, 'id_usuario', FILTER_SANITIZE_NUMBER_INT);    
 	 $id_adquirente = '';
-	 
 	 $cnpj = filter_input(INPUT_POST, 'cnpj', FILTER_SANITIZE_SPECIAL_CHARS);
 		$plano=1;
 		$status=1;
@@ -33,6 +32,8 @@ include_once '../classes/loja_adquirente.class.php';
 		$loja_adquirente->cadastrar();
 		     
 	}
-		echo "<script>window.location='../paginas/inicio.php?page=formulario-cliente'</script>";
+		//echo "<script>window.location='../paginas/inicio.php?page=formulario-cliente'</script>";
+		echo "<script>window.location='../paginas/inicio.php?page=form-filial&id_cliente=$id_cliente'</script>";
+
 	}
    

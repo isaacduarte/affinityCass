@@ -41,12 +41,14 @@ public function alterar($id){
  }
 */
 
-public static function getLojaAdquirentePorId($id){
-  $sql = "select * from loja where id_adquirente=':id'";
-  $sql = str_replace(':id_adquirente', $id, $sql);
+public static function getLojaAdquirentePorId($id_loja){
+  $sql = "select * from loja_adquirente where id_loja=':id_loja'";
+  $array1 = array(':id_loja');
+  $array2 = array($id_loja);
+  $sql = str_replace($array1, $array2, $sql);
   $resultados = new Conexao();
   $resultados = $resultados->query($sql);
-  return $resultados->fetch_array();
+  return mysqli_fetch_all($resultados, MYSQLI_ASSOC);
 }
 
 public static function getLojaPorLoja($id){

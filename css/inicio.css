@@ -148,4 +148,12 @@ td:nth-last-child(1){
 .form-control{
 	box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.2);
 }
+.img{
+	border-radius: 60%;
+	width: 30px;
+	height: 30px;
+}
+.tabela{
+	text-align: center;
+  }
 

@@ -16,7 +16,7 @@ CREATE TABLE `cliente` (
   `id_cliente` int(10) PRIMARY KEY AUTO_INCREMENT,
   `nome` varchar(500) DEFAULT 'NULL',
   `telefone` varchar(20) DEFAULT 'NULL',
-  `email` varchar(20) DEFAULT 'NULL',
+  `email` varchar(50) DEFAULT 'NULL',
   status int(1),
   plano int(1),
   `id_usuario` int(10)

@@ -3,6 +3,7 @@ include_once '../conexao/conexao.php';
 if(!isset($_SESSION)){
   session_start();
 }
+
 class Adquirente{
 
  private $descricao;
@@ -50,6 +51,7 @@ public static function getAdquirentePorId($id_adquirente){
   $resultados = $resultados->query($sql);
   return $resultados->fetch_array();
 }
+
 public static function getAdquirentesCadastrados(){
   $sql = 'select * from adquirente';
   $conexao = new Conexao();
@@ -63,10 +65,16 @@ public static function getLojaPorLoja($id){
     $array1 = array(':id');
     $array2 = array($id);
     $sql = str_replace($array1, $array2, $sql);
-    
     $resultados = new Conexao();
     $resultados = $resultados->query($sql);
     return mysqli_fetch_all($resultados, MYSQLI_ASSOC);
  }
+
+ public static function excluir($id){
+  $sql = "delete from loja_adquirente where id_loja_adquirente=':id_loja_adquirente'";
+  $sql = str_replace(':id_loja_adquirente', $id, $sql);
+  $resultados = new Conexao();
+  $resultados = $resultados->query($sql);
+}
 
 }

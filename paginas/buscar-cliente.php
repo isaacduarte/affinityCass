@@ -1,6 +1,9 @@
 <?php 
   
-  include_once '../classes/Cliente.class.php';
+include_once '../classes/Cliente.class.php';
+include_once '../classes/loja.class.php';
+include_once '../classes/loja_adquirente.class.php';
+include_once '../classes/Adquirente.class.php';
 
  ?>
 
@@ -32,25 +35,30 @@
 			<input type="search" class="form-control" name="campo-busca">
 		 </div>	
 		    <button class="btn btn-primary "><span class="fa fa-check"></span>Buscar</button>
-		    <label><input type="radio" checked name="tipo-busca" value="nome"> Buscar por Nome</label>
-		    <label><input type="radio" name="tipo-busca" value="CNPJ"> Buscar por CNPJ</label>
+   			<!--
+			<label><input type="radio" checked name="tipo-busca" value="nome"> Buscar por Nome</label>
+		    <label><input type="radio" name="tipo-busca" value="CNPJ"> Buscar por CNPJ</label> -->
 		</div>
 		    </form>
 	</div>
-    <?php 
-     $termo = isset($_GET['campo-busca']) ? filter_input(INPUT_GET, 'campo-busca', FILTER_SANITIZE_SPECIAL_CHARS) : '';
+	<?php
+
+	
+	 $termo = isset($_GET['campo-busca']) ? filter_input(INPUT_GET, 'campo-busca', FILTER_SANITIZE_SPECIAL_CHARS) : '';
 	 $tipo = isset($_GET['tipo-busca']) ? filter_input(INPUT_GET, 'tipo-busca', FILTER_SANITIZE_SPECIAL_CHARS) : 'nome';
+	 
+
 	 $id=$usuario['id_usuario'] ;
 	 
 	 $resultados = Cliente::buscar($id, $tipo, $termo);
      ?>
-	<table class="table table-striped table-bordered table-hover ">
+	<table class="table table-striped table-bordered table-hover tabela">
 		<tr>
 			<th>Nome:</th>
-			<th>CNPJ:</th>
-			<th>Adquirente:</th>
             <th>Telefone:</th>
 			<th>E-mail:</th>
+			<th>Status:</th>
+			<th>Plano:</th>
 			<th>Ação:</th>
 		</tr>
 
@@ -59,10 +67,36 @@
 		foreach ($resultados as $cliente): ?>
 		<tr>
 			<td><?php echo $cliente['nome'] ?></td>
-			<td><?php echo $cliente['CNPJ'] ?></td>
-			<td><?php echo $cliente['adquirente'] ?></td>
             <td><?php echo $cliente['telefone'] ?></td>
 			<td><?php echo $cliente['email'] ?></td>
+			<td>
+				<?php 
+				if($cliente['status']=1){
+					?>
+					<img class="img" src="../imagens/1.png" alt="Aguardando proposta">
+				<?php
+				}else if($cliente['status']=2){	
+					?>
+					<img class="img" src="../imagens/2.png" alt="Aguardando documentacao">
+				<?php
+				}else if($cliente['status']=3){
+				?>
+				<img class="img" src="../imagens/3.png" alt="Implantacao em Andamento">
+				<?php
+				}else if($cliente['status']=4){
+				?>
+				<img class="img" src="../imagens/4.png" alt="Implantacao em Andamento">
+				<?php
+				}else{
+					?>
+				<img class="img" src="../imagens/5.png" alt="Cancelado">
+					<?php
+				}
+				?>
+			<td><?php echo $cliente['plano']?></td>
+
+		
+			</td>
 			<td>
               <a href="?page=formulario-cliente&id_cliente=<?php echo $cliente['id_cliente'] ?>">
               <button class="btn btn-success"><span class="fa fa-wrench"></span> Editar</button>
@@ -85,4 +119,30 @@
    <?php
 	endif;?>
 </table>
+</div>
+<div class="row">
+		<div class="col-md-6 form-group">
+			<img class="img" src="../imagens/1.png" alt="Aguardando proposta">
+			<label>Aguardando proposta</label>
+		</div>
+		<div class="col-md-6 form-group">
+			<span></span>
+		</div>
+</div>
+<div class="row">
+		<div class="col-md-6 form-group">
+		<img class="img" src="../imagens/2.png" alt="Aguardando documentacao">
+		<label>Aguardando documentação</label>
+		</div>
+		<div class="col-md-6 form-group">
+		</div>
+</div>
+<div class="row">
+		<div class="col-md-6 form-group">
+		<img class="img" src="../imagens/3.png" alt="Implantacao em Andamento">
+		<label>Implantação em Andamento</label>
+		</div>
+		<div class="col-md-6 form-group">
+			
+		</div>
 </div>
