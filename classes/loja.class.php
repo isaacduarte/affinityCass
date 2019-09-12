@@ -14,7 +14,7 @@ class Loja{
  }
 
  public function cadastrar(){
-   $sql = "insert into cliente(cnpj, id_cliente) values (':cnpj', ':id_cliente')";
+   $sql = "insert into loja(cnpj, id_cliente) values (':cnpj', ':id_cliente')";
    $array1 = array(':cnpj', ':id_cliente');
    $array2 = array($this->cnpj, $this->id_cliente);
    $sql = str_replace($array1, $array2, $sql);
@@ -61,5 +61,13 @@ public static function getLojaPorCliente($id){
     $resultados = $resultados->query($sql);
     return mysqli_fetch_all($resultados, MYSQLI_ASSOC);
  }
+ public static function getLojaUltimoCadastrado(){
+  $sql = 'select id_loja from loja ORDER BY id_loja DESC LIMIT 1';
+  $conexao = new Conexao();
+  $resultados = $conexao->query($sql);
+  $resultados = mysqli_fetch_assoc($resultados);
+  return $resultados;
+  
+}
 
 }

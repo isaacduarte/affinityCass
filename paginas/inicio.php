@@ -107,7 +107,7 @@ $(document).ready(function(){
   event.preventDefault();
   var form_data = $(this).serialize();
   $.ajax({
-   url:"../controles/controleCadastroCliente.php",
+   url:"..",
    method:"POST",
    data:form_data,
    success:function(data)

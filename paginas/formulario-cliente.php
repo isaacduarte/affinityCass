@@ -16,7 +16,7 @@
 
  ?>
  <h1><?php echo isset($id) ? 'Alterar Cliente: ID '.$id : 'Cadastrar Cliente' ?></h1>
-<form id="framework_form" method="post" action="../controles/controleFormularioCliente.php" autocomplete="off">
+<form  method="post" action="../controles/controleFormularioCliente.php" autocomplete="off">
 <input type="hidden" name="id_cliente" value="<?php echo isset($id) ? $id : '' ?>">
 <input type="hidden" name="id_usuario" value="<?php echo ($id_usuario) ?>">
 
@@ -61,8 +61,8 @@
 		</div>
 		<div class="col-md-6 form-group">
 			<label>Informe o CNPJ</label>
-			<input id="CNPJ" type="text" class="form-control" name="CNPJ" 
-			placeholder="Digite o CNPJ" required value="<?php echo isset($CNPJ) ? $CNPJ : '' ?>">
+			<input id="cnpj" type="text" class="form-control" name="cnpj" 
+			placeholder="Digite o CNPJ" required value="<?php echo isset($cnpj) ? $cnpj : '' ?>">
 		</div>
 	</div>
 	<div class="row">

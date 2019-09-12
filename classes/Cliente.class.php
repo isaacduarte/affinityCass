@@ -68,5 +68,13 @@ public static function getClientePorId($id_cliente){
   $resultados = $resultados->query($sql);
   return $resultados->fetch_array();
 }
+public static function getClienteUltimoCadastrado(){
+  $sql = 'select id_cliente from cliente ORDER BY id_cliente DESC LIMIT 1';
+  $conexao = new Conexao();
+  $resultados = $conexao->query($sql);
+  $resultados = mysqli_fetch_assoc($resultados);
+  return $resultados;
+  
+}
 
 }
