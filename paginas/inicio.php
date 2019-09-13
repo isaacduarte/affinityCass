@@ -32,13 +32,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
 	<script type="text/javascript">
     $(document).ready(function(){
 	  $('#telefone').mask('(00) 0000-0000');
-	  $('#CNPJ').mask(' 00.000.000/0000-00');
+	  $('#cnpj').mask(' 00.000.000/0000-00');
 	  $('#cpf').mask(' 000.000.000-00');
       });
-      
 </script>
     <script type="text/javascript">
      window.addEventListener('load', function(){

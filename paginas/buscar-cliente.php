@@ -58,34 +58,36 @@ include_once '../classes/Adquirente.class.php';
             <th>Telefone:</th>
 			<th>E-mail:</th>
 			<th>Status:</th>
-			<th>Plano:</th>
-			<th>Ação:</th>
+			<th>Ações:</th>
 		</tr>
 
 		<?php 
 		if(count($resultados)!=0):
-		foreach ($resultados as $cliente): ?>
+		foreach ($resultados as $cliente):
+			$id_cliente=$cliente['id_cliente'];
+			 ?>
+		
 		<tr>
 			<td><?php echo $cliente['nome'] ?></td>
             <td><?php echo $cliente['telefone'] ?></td>
 			<td><?php echo $cliente['email'] ?></td>
 			<td>
 				<?php 
-				if($cliente['status']=1){
+				if($cliente['status']==1){
 					?>
 					<img class="img" src="../imagens/1.png" alt="Aguardando proposta">
 				<?php
-				}else if($cliente['status']=2){	
+				}else if($cliente['status']==2){	
 					?>
 					<img class="img" src="../imagens/2.png" alt="Aguardando documentacao">
 				<?php
-				}else if($cliente['status']=3){
+				}else if($cliente['status']==3){
 				?>
 				<img class="img" src="../imagens/3.png" alt="Implantacao em Andamento">
 				<?php
-				}else if($cliente['status']=4){
+				}else if($cliente['status']==4){
 				?>
-				<img class="img" src="../imagens/4.png" alt="Implantacao em Andamento">
+				<img class="img" src="../imagens/4.png" alt="Implantacao Finalizada">
 				<?php
 				}else{
 					?>
@@ -93,11 +95,8 @@ include_once '../classes/Adquirente.class.php';
 					<?php
 				}
 				?>
-			<td><?php echo $cliente['plano']?></td>
-
-		
-			</td>
-			<td>
+				</td>
+				<td>
               <a href="?page=formulario-cliente&id_cliente=<?php echo $cliente['id_cliente'] ?>">
               <button class="btn btn-success"><span class="fa fa-wrench"></span> Editar</button>
               </a>
@@ -107,8 +106,7 @@ include_once '../classes/Adquirente.class.php';
      <tr>
 	 
 	<?php 
-  endforeach; 
-  echo 'Resultados encontrados: '.count($resultados);
+  	endforeach; 
 	else:
     ?>
 	
@@ -120,10 +118,12 @@ include_once '../classes/Adquirente.class.php';
 	endif;?>
 </table>
 </div>
+
+<label> <h3>Legenda de Status</h3></label>
 <div class="row">
 		<div class="col-md-6 form-group">
 			<img class="img" src="../imagens/1.png" alt="Aguardando proposta">
-			<label>Aguardando proposta</label>
+			<label> - Aguardando proposta</label>
 		</div>
 		<div class="col-md-6 form-group">
 			<span></span>
@@ -132,7 +132,7 @@ include_once '../classes/Adquirente.class.php';
 <div class="row">
 		<div class="col-md-6 form-group">
 		<img class="img" src="../imagens/2.png" alt="Aguardando documentacao">
-		<label>Aguardando documentação</label>
+		<label> - Aguardando documentação</label>
 		</div>
 		<div class="col-md-6 form-group">
 		</div>
@@ -140,9 +140,26 @@ include_once '../classes/Adquirente.class.php';
 <div class="row">
 		<div class="col-md-6 form-group">
 		<img class="img" src="../imagens/3.png" alt="Implantacao em Andamento">
-		<label>Implantação em Andamento</label>
+		<label> - Implantação em Andamento</label>
 		</div>
 		<div class="col-md-6 form-group">
-			
 		</div>
 </div>
+
+<div class="row">
+		<div class="col-md-6 form-group">
+		<img class="img" src="../imagens/4.png" alt="Implantacao em Andamento">
+		<label> - Implantacao Finalizada</label>
+		</div>
+		<div class="col-md-6 form-group">
+		</div>
+</div>
+<div class="row">
+		<div class="col-md-6 form-group">
+		<img class="img" src="../imagens/5.png" alt="Cancelado">
+		<label> - Cancelado</label>
+		</div>
+		<div class="col-md-6 form-group">
+		</div>
+</div>
+
