@@ -51,12 +51,11 @@ public static function getLojaPorId($id_loja){
   return $resultados->fetch_array();
 }
 
-public static function getLojaPorCliente($id){
-    $sql = "select * from loja where id_cliente=':id'";
-    $array1 = array(':id');
-    $array2 = array($id);
+public static function getLojaPorCliente($id_cliente){
+    $sql = "select * from loja where id_cliente=':id_cliente'";
+    $array1 = array(':id_cliente');
+    $array2 = array($id_cliente);
     $sql = str_replace($array1, $array2, $sql);
-    
     $resultados = new Conexao();
     $resultados = $resultados->query($sql);
     return mysqli_fetch_all($resultados, MYSQLI_ASSOC);
@@ -69,5 +68,4 @@ public static function getLojaPorCliente($id){
   return $resultados;
   
 }
-
 }
