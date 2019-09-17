@@ -14,7 +14,7 @@ include_once '../classes/loja_adquirente.class.php';
 	 $cnpj = filter_input(INPUT_POST, 'cnpj', FILTER_SANITIZE_SPECIAL_CHARS);
 		$plano=1;
 		$status=1;
-		$cliente = new Cliente($nome, $telefone, $email, $id_usuario,$status,$plano );
+		$cliente = new Cliente($nome, $telefone, $email,$status,$plano, $id_usuario );
 		$cliente->cadastrar();
 		$resultados = Cliente::getClienteUltimoCadastrado();
 		$id_cliente=$resultados['id_cliente'];

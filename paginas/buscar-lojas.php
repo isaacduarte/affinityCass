@@ -5,6 +5,11 @@ include_once '../classes/loja.class.php';
 include_once '../classes/loja_adquirente.class.php';
 include_once '../classes/Adquirente.class.php';
 
+if(isset($_GET['id_cliente'])){
+	$cliente = Cliente::getClientePorId($_GET['id_cliente']);
+	$id_cliente = $cliente['id_cliente'];
+}
+
  ?>
 
  <script type="text/javascript">
@@ -31,7 +36,7 @@ include_once '../classes/Adquirente.class.php';
 		<form method="get" action="inicio.php">
 		<div class="row">
 		 <div class="col-md-3">
-		    <input type="hidden" name="page" value="buscar-cliente">	
+		    <input type="hidden" name="page" value="buscar-lojas">	
 			<input type="search" class="form-control" name="campo-busca">
 		 </div>	
 		    <button class="btn btn-primary "><span class="fa fa-check"></span>Buscar</button>
@@ -45,31 +50,31 @@ include_once '../classes/Adquirente.class.php';
 
 	
 	 $termo = isset($_GET['campo-busca']) ? filter_input(INPUT_GET, 'campo-busca', FILTER_SANITIZE_SPECIAL_CHARS) : '';
-	 $tipo = isset($_GET['tipo-busca']) ? filter_input(INPUT_GET, 'tipo-busca', FILTER_SANITIZE_SPECIAL_CHARS) : 'nome';
+	 $tipo = isset($_GET['tipo-busca']) ? filter_input(INPUT_GET, 'tipo-busca', FILTER_SANITIZE_SPECIAL_CHARS) : 'cnpj';
 	 
-
-	 $id=$usuario['id_usuario'] ;
 	 
-	 $resultados = Cliente::buscar($id, $tipo, $termo);
+	 $resultados = Loja::buscar($id, $tipo, $termo);
      ?>
 	<table class="table table-striped table-bordered table-hover tabela">
 		<tr>
-			<th>Nome:</th>
-            <th>Telefone:</th>
-			<th>E-mail:</th>
-			<th>Status:</th>
+			<th>CNPJ:</th>
+            <th>Palno:</th>
+			<th>Adquirente</th>
 			<th>Ações:</th>
 		</tr>
 
 		<?php 
 		if(count($resultados)!=0):
-		foreach ($resultados as $cliente):
-			$id_cliente=$cliente['id_cliente'];
+		foreach ($resultados as $lojas):
 			 ?>
 		
 		<tr>
-			<td><?php echo $cliente['nome'] ?></td>
-            <td><?php echo $cliente['telefone'] ?></td>
+			<td><?php echo $lojas['cnpj'] ?></td>
+			<td><?php 
+			
+			
+			
+			?></td>
 			<td><?php echo $cliente['email'] ?></td>
 			<td>
 				<?php 
@@ -95,36 +100,8 @@ include_once '../classes/Adquirente.class.php';
 					<?php
 				}
 				?>
-<<<<<<< HEAD
-
-				<td>
-					<?php 
-					$loja=Loja::getLojaPorCliente($id_cliente);
-					foreach ($loja as $lojas){
-						$id_loja=$lojas['id_loja'];
-						$plano=Loja_Adquirente::getPlano($id_loja);
-						foreach ($plano as $planos){
-							$p=$planos['id_adquirente'];
-						if($p='2'){
-							?>
-							<img class="img" src="../imagens/prata.png" alt="Parta">
-							<?php
-						} else{
-							?>
-							<img class="img" src="../imagens/bronze.png" alt="Bronze">
-							<?php
-						}
-					}}
-					?>
-				</td>
-
-		
-			</td>
-			<td>
-=======
 				</td>
 				<td>
->>>>>>> ecf7e7d3d5673e2d1378af4e2a678ae97e492d5e
               <a href="?page=formulario-cliente&id_cliente=<?php echo $cliente['id_cliente'] ?>">
               <button class="btn btn-success"><span class="fa fa-wrench"></span> Editar</button>
               </a>
@@ -146,10 +123,7 @@ include_once '../classes/Adquirente.class.php';
 	endif;?>
 </table>
 </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> ecf7e7d3d5673e2d1378af4e2a678ae97e492d5e
 <label> <h3>Legenda de Status</h3></label>
 <div class="row">
 		<div class="col-md-6 form-group">
@@ -172,8 +146,6 @@ include_once '../classes/Adquirente.class.php';
 		<div class="col-md-6 form-group">
 		<img class="img" src="../imagens/3.png" alt="Implantacao em Andamento">
 		<label> - Implantação em Andamento</label>
-<<<<<<< HEAD
-=======
 		</div>
 		<div class="col-md-6 form-group">
 		</div>
@@ -191,28 +163,8 @@ include_once '../classes/Adquirente.class.php';
 		<div class="col-md-6 form-group">
 		<img class="img" src="../imagens/5.png" alt="Cancelado">
 		<label> - Cancelado</label>
->>>>>>> ecf7e7d3d5673e2d1378af4e2a678ae97e492d5e
 		</div>
 		<div class="col-md-6 form-group">
 		</div>
 </div>
 
-<<<<<<< HEAD
-<div class="row">
-		<div class="col-md-6 form-group">
-		<img class="img" src="../imagens/4.png" alt="Implantacao em Andamento">
-		<label> - Implantacao Finalizada</label>
-		</div>
-		<div class="col-md-6 form-group">
-		</div>
-</div>
-<div class="row">
-		<div class="col-md-6 form-group">
-		<img class="img" src="../imagens/5.png" alt="Cancelado">
-		<label> - Cancelado</label>
-		</div>
-		<div class="col-md-6 form-group">
-		</div>
-</div>
-=======
->>>>>>> ecf7e7d3d5673e2d1378af4e2a678ae97e492d5e

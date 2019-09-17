@@ -68,4 +68,17 @@ public static function getLojaPorCliente($id_cliente){
   return $resultados;
   
 }
+<<<<<<< HEAD
+=======
+public static function buscar($id, $tipo_busca, $termo){
+  $sql = "select * from loja where id_cliente=':id' and :tipo_busca like '%:termo_busca%'";
+  $array1 = array(':id', ':tipo_busca', ':termo_busca');
+  $array2 = array($id, $tipo_busca, $termo);
+  $sql = str_replace($array1, $array2, $sql);
+  
+  $resultados = new Conexao();
+  $resultados = $resultados->query($sql);
+  return mysqli_fetch_all($resultados, MYSQLI_ASSOC);
+}
+>>>>>>> ecf7e7d3d5673e2d1378af4e2a678ae97e492d5e
 }
