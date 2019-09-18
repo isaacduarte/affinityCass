@@ -56,22 +56,10 @@
     </script>
 </head>
 <body>
- <section class="menu-lateral">
-    <div class="mascara">
-    	<h1>Affinity Cass</h1>
-    	<ul>
-    		<li><a href="?page=menu"><span class="fa fa-home"></span> Inicio</a></li>
-    		<li><a href="?page=formulario-cliente"><span class="fa fa-plus"></span> Cadastrar Cliente</a></li>
-    		<li><a  href="?page=buscar-cliente"><span class="fa fa-search"></span> Buscar cliente</a></li>
-    		<li><a href="../controles/controleLogoff.php" class="botao-logoff"><span class="fa fa-sign-out"></span> Sair</a></li>
-    	</ul>
-    </div>
-    </section>
-    <section class="conteudo">
-    <div class="cabecalho-site">
-    	<h3><span class="fa fa-user"></span> Olá senhor(a): <?php echo $usuario['nome'] ?></h3>
-    </div>
-     <?php 
+ 
+     <?php
+     if($usuario['nivel']==1){ 
+       include_once 'menu-lateral.php';
          switch (isset($_GET['page']) ? $_GET['page'] : 'inicio') {
          	case 'buscar-cliente':
          		include_once 'buscar-cliente.php';
@@ -92,6 +80,32 @@
          		include_once 'menu-inicial.php';
          		break;
          }
+        }else{
+          include_once 'menu-gerencia.php';
+          switch (isset($_GET['page']) ? $_GET['page'] : 'inicio') {
+            case 'buscar-cliente':
+              include_once 'buscar-cliente.php';
+              break;
+            case 'formulario-cliente':
+              include_once 'formulario-cliente.php';
+              break;
+            case 'menu':
+                 include_once 'menu-inicial.php';
+                 break;
+             case 'sobre':
+                 include_once 'equipe.php';
+                 break;
+             case 'form-filial':
+                 include_once 'form-filial.php';
+                 break;
+             case 'gerenciar-vendas':
+                include_once 'gerenciar-vendas.php';
+                break;
+            default:
+              include_once 'menu-inicial.php';
+              break;
+          }
+        }
       ?>
     </section>
 </body>

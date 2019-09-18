@@ -92,4 +92,14 @@
             header('Location: ../index.php');
         }
       }
+      public static function buscar($tipo_busca, $termo){
+            $sql = "select * from usuario where :tipo_busca like '%:termo_busca%'";
+            $array1 = array(':tipo_busca', ':termo_busca');
+            $array2 = array($tipo_busca, $termo);
+            $sql = str_replace($array1, $array2, $sql);
+            
+            $resultados = new Conexao();
+            $resultados = $resultados->query($sql);
+            return mysqli_fetch_all($resultados, MYSQLI_ASSOC);
+         }
  }
