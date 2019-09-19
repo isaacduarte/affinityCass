@@ -68,9 +68,8 @@ public static function getLojaPorLoja($id){
   $sql = str_replace($array1, $array2, $sql);
   $resultados = new Conexao();
   $resultados = $resultados->query($sql);
-<<<<<<< HEAD
+
   return mysqli_fetch_all($resultados, MYSQLI_ASSOC);
-=======
   foreach ($resultados as $planos){
   if($planos['id_adquirente']==2){ 
     return '2';
@@ -95,8 +94,7 @@ public static function getLojaPorLoja($id){
   }
 }
   //return mysqli_fetch_all($resultados, MYSQLI_ASSOC);
->>>>>>> ecf7e7d3d5673e2d1378af4e2a678ae97e492d5e
-  
+
 }
 
 }

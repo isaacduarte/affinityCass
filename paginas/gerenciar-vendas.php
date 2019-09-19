@@ -25,7 +25,7 @@ include_once '../classes/Adquirente.class.php';
      };
    });
  </script>
-<h1>Tabela de Clientes</h1>
+<h1>Visão de Vendas</h1>
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<form method="get" action="inicio.php">
@@ -52,10 +52,8 @@ include_once '../classes/Adquirente.class.php';
 	<table class="table table-striped table-bordered table-hover tabela">
 		<tr>
 			<th>Nome:</th>
-            <th>CPF:</th>
 			<th>E-mail:</th>
 			<th>Telefone:</th>
-			<th>CNPJ:</th>
 			<th>Nº Inscrição:</th>
 			<th>Associado:</th>
 			<th>:Ações</th>
@@ -69,10 +67,8 @@ include_once '../classes/Adquirente.class.php';
 		
 		<tr>
 			<td><?php echo $usuarios['nome'] ?></td>
-            <td><?php echo $usuarios['cpf'] ?></td>
 			<td><?php echo $usuarios['email'] ?></td>
 			<td><?php echo $usuarios['telefone']?></td>
-			<td><?php echo $usuarios['cnpj']?></td>
 			<td><?php echo $usuarios['inscricao']?></td>
 			<td>
 
