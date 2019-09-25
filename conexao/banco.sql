@@ -32,11 +32,16 @@ CREATE TABLE `adquirente` (
   `id_adquirente` int(10) PRIMARY KEY AUTO_INCREMENT,
   `descricao` varchar(50) DEFAULT 'NULL'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `adquirente` (
+  `id_adquirente` int(10) PRIMARY KEY AUTO_INCREMENT,
+  `descricao` varchar(50) DEFAULT 'NULL'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 CREATE TABLE `loja_adquirente` (
   `id_loja_adquirente` int(10) PRIMARY KEY AUTO_INCREMENT,
   `id_loja` int(10),
   `id_adquirente` int(10)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 ALTER TABLE `cliente`
   ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `Usuario` (`id_usuario`);

@@ -30,7 +30,15 @@ if(isset($_GET['id_cliente'])){
      };
    });
  </script>
-<h1>Tabela de Clientes</h1>
+ <?php
+ $id_loja='';
+ if(isset($_GET['id_usuario'])){
+	  $usuario = Usuario::getUsuarioPorID($_GET['id_usuario']);
+	  $id = $usuario['id_usuario'];
+	  $nome = $usuario['nome'];
+ }
+ ?>
+<h1>Vendas do representante: <?php echo($nome); ?></h1>
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<form method="get" action="inicio.php">
@@ -43,6 +51,8 @@ if(isset($_GET['id_cliente'])){
    			<!--
 			<label><input type="radio" checked name="tipo-busca" value="nome"> Buscar por Nome</label>
 		    <label><input type="radio" name="tipo-busca" value="CNPJ"> Buscar por CNPJ</label> -->
+			<div>
+			</div>
 		</div>
 		    </form>
 	</div>

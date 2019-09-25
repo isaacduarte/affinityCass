@@ -83,10 +83,7 @@ include_once '../classes/Adquirente.class.php';
 				?>
 			</td>
 				<td>
-              <a href="?page=formulario-cliente&id_cliente=<?php echo $usuario['id_usuario'] ?>">
-              <button class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
-              </a>
-			  <a href="?page=formulario-cliente&id_cliente=<?php echo $usuario['id_usuario'] ?>">
+			  <a href="?page=formulario-cliente&id_usuario=<?php echo $usuario['id_usuario'] ?>">
               <button class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
               </a>
 			</td>
@@ -107,48 +104,3 @@ include_once '../classes/Adquirente.class.php';
 	endif;?>
 </table>
 </div>
-
-<label> <h3>Legenda de Status</h3></label>
-<div class="row">
-		<div class="col-md-6 form-group">
-			<img class="img" src="../imagens/1.png" alt="Aguardando proposta">
-			<label> - Aguardando proposta</label>
-		</div>
-		<div class="col-md-6 form-group">
-			<span></span>
-		</div>
-</div>
-<div class="row">
-		<div class="col-md-6 form-group">
-		<img class="img" src="../imagens/2.png" alt="Aguardando documentacao">
-		<label> - Aguardando documentação</label>
-		</div>
-		<div class="col-md-6 form-group">
-		</div>
-</div>
-<div class="row">
-		<div class="col-md-6 form-group">
-		<img class="img" src="../imagens/3.png" alt="Implantacao em Andamento">
-		<label> - Implantação em Andamento</label>
-		</div>
-		<div class="col-md-6 form-group">
-		</div>
-</div>
-
-<div class="row">
-		<div class="col-md-6 form-group">
-		<img class="img" src="../imagens/4.png" alt="Implantacao em Andamento">
-		<label> - Implantacao Finalizada</label>
-		</div>
-		<div class="col-md-6 form-group">
-		</div>
-</div>
-<div class="row">
-		<div class="col-md-6 form-group">
-		<img class="img" src="../imagens/5.png" alt="Cancelado">
-		<label> - Cancelado</label>
-		</div>
-		<div class="col-md-6 form-group">
-		</div>
-</div>
-

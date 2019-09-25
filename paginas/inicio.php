@@ -101,6 +101,9 @@
              case 'gerenciar-vendas':
                 include_once 'gerenciar-vendas.php';
                 break;
+              case 'buscar-lojas':
+                include_once 'buscar-lojas.php';
+                break;
             default:
               include_once 'menu-inicial.php';
               break;
