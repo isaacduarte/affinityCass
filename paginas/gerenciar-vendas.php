@@ -25,7 +25,7 @@ include_once '../classes/Adquirente.class.php';
      };
    });
  </script>
-<h1>Visão de Vendas</h1>
+<h1>Visão de Representates</h1>
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<form method="get" action="inicio.php">
@@ -83,7 +83,7 @@ include_once '../classes/Adquirente.class.php';
 				?>
 			</td>
 				<td>
-			  <a href="?page=formulario-cliente&id_usuario=<?php echo $usuario['id_usuario'] ?>">
+			  <a href="?page=buscar-lojas&id_usuario=<?php echo $id_usuario ?>">
               <button class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
               </a>
 			</td>

@@ -26,13 +26,12 @@ include_once '../classes/Adquirente.class.php';
    });
  </script>
  <?php
- if(isset($_GET['id_usuario'])){
-	  $usuario = Usuario::getUsuarioPorID($_GET['id_usuario']);
-	  $id_usuario = $usuario['id_usuario'];
-	  $nome = $usuario['nome'];
+ if(isset($_GET['id_cliente'])){
+	  $cliente = Cliente::getLojaPorCliente($_GET['id_cliente']);
+	  $id_cliente = $cliente['id_cliente'];
  }
  ?>
-<h3>Vendas do representante: <?php echo($nome); ?></h3>
+<h3>Lojas: <?php echo($nome); ?></h3>
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<form method="get" action="inicio.php">
@@ -76,17 +75,9 @@ include_once '../classes/Adquirente.class.php';
             <td><?php echo $cliente['telefone'] ?></td>
 			<td><?php echo $cliente['email'] ?></td>
 			<td>
-			<div class="form-group">
-   					 <select class="form-control" id="exampleFormControlSelect3">
-      					<option>
-						  <?php 
+				<?php 
 				if($cliente['status']==1){
 					?>
-					<option 
-					style="background-image: url('../imagens/1.png'); 
-					background-repeat: no-repeat;border-radius: 60%;
-					width: 30px;height: 30px;">
-					</option>
 					<img class="img" src="../imagens/1.png" alt="Aguardando proposta">
 				<?php
 				}else if($cliente['status']==2){	
@@ -106,20 +97,12 @@ include_once '../classes/Adquirente.class.php';
 				<img class="img" src="../imagens/5.png" alt="Cancelado">
 					<?php
 				}
-				?>  
-						</option>
-      					<option>2</option>
-      					<option>3</option>
-      					<option>4</option>
-      					<option>5</option>
-    				</select>
-  			</div>
-				
+				?>
 			</td>
 			<td>
 			<form method="GET">
 				<input type="hidden" name="id_cliente" value="<?php echo ($id_cliente) ?>">
-              	<button class="btn btn-success"><span class="glyphicon glyphicon-floppy-save"></span></button>
+              	<button class="btn btn-success"><span class="fa fa-wrench"></span></button>
                 <button class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg"><span class="glyphicon glyphicon-plus"></span></button>
 			  </form>
 			</td>
@@ -140,11 +123,7 @@ include_once '../classes/Adquirente.class.php';
 	endif;?>
 </table>
 </div>
-<div class="tow">
-	<a href="?page=gerenciar-vendas">
-		<button class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</button>
-	</a>	
-</div>
+<button class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg"><span class="glyphicon glyphicon-plus">Voltar</span></button>
 <label> <h3>Legenda de Status</h3></label>
 <div class="row">
 		<div class="col-md-6 form-group">
@@ -188,6 +167,14 @@ include_once '../classes/Adquirente.class.php';
 		<div class="col-md-6 form-group">
 		</div>
 </div>
-
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+	  <?php
+	 echo($_GET['id_cliente']); 
+	  ?>
+    </div>
+  </div>
+</div>
 
 
