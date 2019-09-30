@@ -27,8 +27,10 @@ include_once '../classes/Adquirente.class.php';
  </script>
  <?php
  if(isset($_GET['id_cliente'])){
-	  $cliente = Cliente::getLojaPorCliente($_GET['id_cliente']);
-	  $id_cliente = $cliente['id_cliente'];
+	  $cliente= Cliente::getClientePorId($_GET['id_cliente']);
+	  $id_cliente= $cliente['id_cliente'];
+	  $nome = $cliente['nome'];
+	 // $id_usuario = $cliente['id_usuario'];
  }
  ?>
 <h3>Lojas: <?php echo($nome); ?></h3>
@@ -51,61 +53,54 @@ include_once '../classes/Adquirente.class.php';
 
 	
 	 $termo = isset($_GET['campo-busca']) ? filter_input(INPUT_GET, 'campo-busca', FILTER_SANITIZE_SPECIAL_CHARS) : '';
-	 $tipo = isset($_GET['tipo-busca']) ? filter_input(INPUT_GET, 'tipo-busca', FILTER_SANITIZE_SPECIAL_CHARS) : 'nome';
+	 $tipo = isset($_GET['tipo-busca']) ? filter_input(INPUT_GET, 'tipo-busca', FILTER_SANITIZE_SPECIAL_CHARS) : 'cnpj';
 
-	 $resultados = Cliente::buscar($id_usuario, $tipo, $termo);
+	 $resultados = Loja::getLojaPorCliente($id_cliente);
      ?>
 	<table class="table table-striped table-bordered table-hover tabela">
 		<tr>
-			<th>Nome:</th>
-            <th>Telefone:</th>
-			<th>E-mail:</th>
-			<th>Status:</th>
-			<th>Ações:</th>
+			<th>CNPJ:</th>
+			<th>Adquirente:</th>
+			<th>Plano:</th>
 		</tr>
 
 		<?php 
 		if(count($resultados)!=0):
-		foreach ($resultados as $cliente):
-			$id_cliente=$cliente['id_cliente'];
+		foreach ($resultados as $loja):
+			$id_loja=$loja['id_loja'];
 			 ?>
 		
 		<tr>
-			<td><?php echo $cliente['nome'] ?></td>
-            <td><?php echo $cliente['telefone'] ?></td>
-			<td><?php echo $cliente['email'] ?></td>
+			<td><?php echo $loja['cnpj'] ?></td>
+
+			<td><?php 
+			$adquirentes= Loja_Adquirente::getLojaAdquirentePorId($id_loja);
+			foreach($adquirentes as $adquirente){
+				$id_adquirente= $adquirente['id_adquirente'];
+				$descricao = Adquirente::getAdquirentePorId($id_adquirente);
+				echo $descricao['descricao'];
+			}
+			
+			?></td>
 			<td>
-				<?php 
-				if($cliente['status']==1){
+			<?php 
+						$plano=Loja_Adquirente::getPlano($id_loja);
+						foreach ($plano as $planos){
+							$p=$planos['id_adquirente'];
+						if($p='2'){
+							?>
+							<img class="img" src="../imagens/prata.png" alt="Parta">
+							<?php
+						} else{
+							?>
+							<img class="img" src="../imagens/bronze.png" alt="Bronze">
+							<?php
+						}
+					}
 					?>
-					<img class="img" src="../imagens/1.png" alt="Aguardando proposta">
-				<?php
-				}else if($cliente['status']==2){	
-					?>
-					<img class="img" src="../imagens/2.png" alt="Aguardando documentacao">
-				<?php
-				}else if($cliente['status']==3){
-				?>
-				<img class="img" src="../imagens/3.png" alt="Implantacao em Andamento">
-				<?php
-				}else if($cliente['status']==4){
-				?>
-				<img class="img" src="../imagens/4.png" alt="Implantacao Finalizada">
-				<?php
-				}else{
-					?>
-				<img class="img" src="../imagens/5.png" alt="Cancelado">
-					<?php
-				}
-				?>
+			
 			</td>
-			<td>
-			<form method="GET">
-				<input type="hidden" name="id_cliente" value="<?php echo ($id_cliente) ?>">
-              	<button class="btn btn-success"><span class="fa fa-wrench"></span></button>
-                <button class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg"><span class="glyphicon glyphicon-plus"></span></button>
-			  </form>
-			</td>
+			
 		</tr>
 		
      <tr>
@@ -123,58 +118,10 @@ include_once '../classes/Adquirente.class.php';
 	endif;?>
 </table>
 </div>
-<button class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg"><span class="glyphicon glyphicon-plus">Voltar</span></button>
-<label> <h3>Legenda de Status</h3></label>
 <div class="row">
-		<div class="col-md-6 form-group">
-			<img class="img" src="../imagens/1.png" alt="Aguardando proposta">
-			<label> - Aguardando proposta</label>
-		</div>
-		<div class="col-md-6 form-group">
-			<span></span>
-		</div>
-</div>
-<div class="row">
-		<div class="col-md-6 form-group">
-		<img class="img" src="../imagens/2.png" alt="Aguardando documentacao">
-		<label> - Aguardando documentação</label>
-		</div>
-		<div class="col-md-6 form-group">
-		</div>
-</div>
-<div class="row">
-		<div class="col-md-6 form-group">
-		<img class="img" src="../imagens/3.png" alt="Implantacao em Andamento">
-		<label> - Implantação em Andamento</label>
-		</div>
-		<div class="col-md-6 form-group">
-		</div>
-</div>
-
-<div class="row">
-		<div class="col-md-6 form-group">
-		<img class="img" src="../imagens/4.png" alt="Implantacao em Andamento">
-		<label> - Implantacao Finalizada</label>
-		</div>
-		<div class="col-md-6 form-group">
-		</div>
-</div>
-<div class="row">
-		<div class="col-md-6 form-group">
-		<img class="img" src="../imagens/5.png" alt="Cancelado">
-		<label> - Cancelado</label>
-		</div>
-		<div class="col-md-6 form-group">
-		</div>
-</div>
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-	  <?php
-	 echo($_GET['id_cliente']); 
-	  ?>
-    </div>
-  </div>
+	<a href="?page=buscar-lojas&id_usuario=<?php echo $cliente['id_usuario'] ?>">
+		<button class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</button>
+	</a>	
 </div>
 
 

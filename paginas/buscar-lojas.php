@@ -76,17 +76,9 @@ include_once '../classes/Adquirente.class.php';
             <td><?php echo $cliente['telefone'] ?></td>
 			<td><?php echo $cliente['email'] ?></td>
 			<td>
-			<div class="form-group">
-   					 <select class="form-control" id="exampleFormControlSelect3">
-      					<option>
-						  <?php 
+			<?php 
 				if($cliente['status']==1){
 					?>
-					<option 
-					style="background-image: url('../imagens/1.png'); 
-					background-repeat: no-repeat;border-radius: 60%;
-					width: 30px;height: 30px;">
-					</option>
 					<img class="img" src="../imagens/1.png" alt="Aguardando proposta">
 				<?php
 				}else if($cliente['status']==2){	
@@ -106,22 +98,15 @@ include_once '../classes/Adquirente.class.php';
 				<img class="img" src="../imagens/5.png" alt="Cancelado">
 					<?php
 				}
-				?>  
-						</option>
-      					<option>2</option>
-      					<option>3</option>
-      					<option>4</option>
-      					<option>5</option>
-    				</select>
-  			</div>
-				
+				?>
 			</td>
 			<td>
-			<form method="GET">
-				<input type="hidden" name="id_cliente" value="<?php echo ($id_cliente) ?>">
+			<a href="?page=editar-cliente&id_cliente=<?php echo $cliente['id_cliente'] ?>">
               	<button class="btn btn-success"><span class="glyphicon glyphicon-floppy-save"></span></button>
-                <button class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg"><span class="glyphicon glyphicon-plus"></span></button>
-			  </form>
+		    </a>
+			<a href="?page=exibe-lojas&id_cliente=<?php echo $cliente['id_cliente'] ?>">
+                <button class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
+			</a>
 			</td>
 		</tr>
 		
@@ -140,7 +125,7 @@ include_once '../classes/Adquirente.class.php';
 	endif;?>
 </table>
 </div>
-<div class="tow">
+<div class="row">
 	<a href="?page=gerenciar-vendas">
 		<button class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</button>
 	</a>	

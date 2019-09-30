@@ -25,7 +25,7 @@ include_once '../classes/Adquirente.class.php';
      };
    });
  </script>
-<h1>Visão de Representates</h1>
+<h1>Visão de Representantes</h1>
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<form method="get" action="inicio.php">

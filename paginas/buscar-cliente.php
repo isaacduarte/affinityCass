@@ -95,36 +95,14 @@ include_once '../classes/Adquirente.class.php';
 					<?php
 				}
 				?>
-
-				<td>
-					<?php 
-					$loja=Loja::getLojaPorCliente($id_cliente);
-					foreach ($loja as $lojas){
-						$id_loja=$lojas['id_loja'];
-						$plano=Loja_Adquirente::getPlano($id_loja);
-						foreach ($plano as $planos){
-							$p=$planos['id_adquirente'];
-						if($p='2'){
-							?>
-							<img class="img" src="../imagens/prata.png" alt="Parta">
-							<?php
-						} else{
-							?>
-							<img class="img" src="../imagens/bronze.png" alt="Bronze">
-							<?php
-						}
-					}}
-					?>
-				</td>
-
-		
 			</td>
-			<td>
-				</td>
 				<td>
-              <a href="?page=formulario-cliente&id_cliente=<?php echo $cliente['id_cliente'] ?>">
-              <button class="btn btn-success"><span class="fa fa-wrench"></span> Editar</button>
-              </a>
+				<a href="?page=editar-cliente&id_cliente=<?php echo $cliente['id_cliente'] ?>">
+              	<button class="btn btn-success"><span class="glyphicon glyphicon-floppy-save"></span></button>
+		    </a>
+			<a href="?page=exibe-lojas&id_cliente=<?php echo $cliente['id_cliente'] ?>">
+                <button class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
+			</a>
 			</td>
 		</tr>
 		

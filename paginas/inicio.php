@@ -104,6 +104,12 @@
               case 'buscar-lojas':
                 include_once 'buscar-lojas.php';
                 break;
+                case 'editar-cliente':
+                include_once 'editar-cliente.php';
+                break;
+                case 'exibe-lojas':
+                include_once 'exibe-lojas.php';
+                break;
             default:
               include_once 'menu-inicial.php';
               break;
